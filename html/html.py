@@ -117,6 +117,18 @@ class Html(Tag):
             children=children,
         )
         self._body: Optional['Body'] = None
+        self._head: Optional['Head'] = None
+
+    @property
+    def head(self) -> 'Head':
+        if self._head is None:
+            for child in self._children:
+                if isinstance(child, Head):
+                    self._head = child
+                    break
+            else:
+                raise TypeError('Head is None')
+        return self._head
 
     @property
     def body(self) -> 'Body':
