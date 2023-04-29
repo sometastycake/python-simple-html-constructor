@@ -18,8 +18,7 @@ class Tag:
     _possible_attrs = set()
 
     _global_attrs = {
-        'id', 'class', 'style', 'lang',
-        'tabindex', 'title', 'spellcheck',
+        'id', 'class', 'style', 'lang', 'tabindex', 'title', 'spellcheck'
     }
 
     def __init__(
@@ -141,6 +140,14 @@ class Head(Tag):
         super().__init__(children=children)
 
 
+class Link(Tag):
+
+    _possible_attrs = {'charset', 'href', 'rel', 'type', 'media'}
+
+    def __init__(self, attrs: _PROPERTIES = None,):
+        super().__init__(attrs=attrs)
+
+
 class Style(Tag):
 
     _possible_attrs = {'media', 'type'}
@@ -163,7 +170,7 @@ class Body(Tag):
         super().__init__(style=style, children=children)
 
 
-def get_html(style: Optional[Style] = None) -> Html:
+def get_html(style: Optional[Style] = None, link: Optional[Link] = None) -> Html:
     body = Body()
     meta = Meta(attrs={'charset': 'utf-8'})
     hchildren = [meta]
@@ -171,6 +178,10 @@ def get_html(style: Optional[Style] = None) -> Html:
         if not isinstance(style, Style):
             raise TypeError(f'Expect `Style` type, but actual {type(style)}')
         hchildren.append(style)
+    if link is not None:
+        if not isinstance(link, Link):
+            raise TypeError(f'Expect `Link` type, but actual {type(style)}')
+        hchildren.append(link)
     head = Head(children=hchildren)
     html = Html(children=[head, body])
     return html
