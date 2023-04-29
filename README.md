@@ -106,6 +106,31 @@ html.save('page.html')
 ![img.png](form.png)
 
 
+### Formatting text
+
+```python
+from html.formatting import B, I, U
+from html.html import get_html
+from html.tags import Br, Div
+
+html = get_html()
+
+html.body.add_child(
+    Div(
+        style={
+            'font-size': '20px',
+        },
+        children=[
+            B('Bold text'), Br(), I('Cursive text'), Br(), U('Underlined text')
+        ]
+    )
+)
+
+html.save('page.html')
+```
+
+![img.png](formatting.png)
+
 ## Licence
 
 MIT
