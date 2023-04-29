@@ -131,6 +131,6 @@ html.save('page.html')
 
 ![img.png](formatting.png)
 
-## Licence
+## License
 
 MIT
