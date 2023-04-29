@@ -1,6 +1,6 @@
 import copy
 from datetime import date, datetime
-from typing import List, Mapping, Optional, Union
+from typing import Iterable, List, Mapping, Optional, Union
 
 _TEXT = Optional[Union[str, int, date, datetime]]
 _STYLE = Optional[Mapping[str, str]]
@@ -170,7 +170,7 @@ class Body(Tag):
         super().__init__(style=style, children=children)
 
 
-def get_html(style: Optional[Style] = None, link: Optional[Link] = None) -> Html:
+def get_html(style: Optional[Style] = None, links: Optional[Iterable[Link]] = None) -> Html:
     body = Body()
     meta = Meta(attrs={'charset': 'utf-8'})
     hchildren = [meta]
@@ -178,10 +178,11 @@ def get_html(style: Optional[Style] = None, link: Optional[Link] = None) -> Html
         if not isinstance(style, Style):
             raise TypeError(f'Expect `Style` type, but actual {type(style)}')
         hchildren.append(style)
-    if link is not None:
-        if not isinstance(link, Link):
-            raise TypeError(f'Expect `Link` type, but actual {type(style)}')
-        hchildren.append(link)
+    if links is not None:
+        for link in links:
+            if not isinstance(link, Link):
+                raise TypeError(f'Expect `Link` type, but actual {type(style)}')
+            hchildren.append(link)
     head = Head(children=hchildren)
     html = Html(children=[head, body])
     return html
