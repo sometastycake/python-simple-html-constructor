@@ -43,7 +43,6 @@ html.body.add_child(table)
 html.save('page.html')
 ```
 
-### Result
 
 ![img.png](table.png)
 
@@ -92,6 +91,9 @@ html.save('page.html')
 ```
 
 
-### Result
-
 ![img.png](form.png)
+
+
+## Licence
+
+MIT
