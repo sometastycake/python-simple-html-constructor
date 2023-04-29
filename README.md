@@ -74,11 +74,23 @@ style = Style(
 
 html = get_html(style=style)
 
-LabelName = Label('Name', attrs={'for': 'name'})
-LabelPassword = Label('Password', attrs={'for': 'password'})
+LabelName = Label(text='Name', attrs={'for': 'name'})
+LabelPassword = Label(text='Password', attrs={'for': 'password'})
 
-NameTag = Input(attrs={'type': 'text', 'value': 'Name', 'name': 'name'})
-PasswordTag = Input(attrs={'type': 'password', 'value': 'Password', 'name': 'password'})
+NameTag = Input(
+    attrs={
+        'type': 'text',
+        'value': 'Name',
+        'name': 'name'
+    }
+)
+PasswordTag = Input(
+    attrs={
+        'type': 'password',
+        'value': 'Password',
+        'name': 'password'
+    }
+)
 ButtonTag = Button(text='Send')
 
 html.body.add_child(
