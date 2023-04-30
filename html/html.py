@@ -64,6 +64,9 @@ class Tag:
             raise ValueError('Child tag cannot be added for single tag')
         self._children.append(tag)
 
+    def update_style(self, **styles):
+        self._style.update(styles)
+
     def _get_css(self) -> str:
         if not self._style:
             return ''
