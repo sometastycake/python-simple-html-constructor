@@ -5,6 +5,9 @@ class Br(Tag):
     _global_attrs = set()
     _possible_attrs = set()
 
+    def __init__(self):
+        super().__init__()
+
 
 class A(Tag):
     _possible_attrs = {'href', 'name', 'type', 'target', 'rel'}
