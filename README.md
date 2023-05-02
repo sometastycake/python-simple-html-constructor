@@ -6,8 +6,8 @@
 ### Table
 
 ```python
-from html.html import Style, get_html
-from html.table import Caption, Table, Td, Th, Tr
+from chtml.html import Style, get_html
+from chtml.table import Caption, Table, Td, Th, Tr
 
 style = Style(
     """
@@ -48,9 +48,9 @@ with get_html('page.html', style=style) as html:
 ### Form
 
 ```python
-from html.forms import Button, Form, Input, Label
-from html.html import Style, get_html
-from html.tags import Br
+from chtml.forms import Button, Form, Input, Label
+from chtml.html import Style, get_html
+from chtml.tags import Br
 
 style = Style(
     """
@@ -104,9 +104,9 @@ with get_html('page.html', style=style) as html:
 ### Formatting text
 
 ```python
-from html.formatting import B, I, U
-from html.html import get_html
-from html.tags import Br, Div
+from chtml.formatting import B, I, U
+from chtml.html import get_html
+from chtml.tags import Br, Div
 
 with get_html('page.html') as html:
     html.body.add_child(
