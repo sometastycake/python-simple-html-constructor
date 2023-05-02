@@ -44,4 +44,5 @@ class Td(Tag):
 
 
 class Th(Td):
-    _possible_attrs = {'align'}
+    _possible_attrs = Td._possible_attrs
+    _possible_attrs.update({'align'})

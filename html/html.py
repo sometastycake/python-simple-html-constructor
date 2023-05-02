@@ -1,4 +1,5 @@
 import copy
+from contextlib import contextmanager
 from datetime import date, datetime
 from typing import Iterable, List, Mapping, Optional, Union
 
@@ -185,7 +186,8 @@ class Body(Tag):
         super().__init__(style=style, children=children)
 
 
-def get_html(style: Optional[Style] = None, links: Optional[Iterable[Link]] = None) -> Html:
+@contextmanager
+def get_html(filename: str, style: Optional[Style] = None, links: Optional[Iterable[Link]] = None) -> Html:
     body = Body()
     meta = Meta(attrs={'charset': 'utf-8'})
     hchildren = [meta]
@@ -200,4 +202,8 @@ def get_html(style: Optional[Style] = None, links: Optional[Iterable[Link]] = No
             hchildren.append(link)
     head = Head(children=hchildren)
     html = Html(children=[head, body])
-    return html
+    try:
+        yield html
+    finally:
+        with open(filename, 'w') as file:
+            file.write(html.to_html())

@@ -27,20 +27,18 @@ style = Style(
     """
 )
 
-html = get_html(style=style)
-
-table = Table(
-    id_='table',
-    children=[
-        Caption('Table caption'),
-        Tr(children=[Th('Header 1'), Th('Header 1')]),
-        Tr(children=[Td('Value 1'), Td('Value 2')]),
-        Tr(children=[Td('Value 3'), Td('Value 4')]),
-    ]
-)
-
-html.body.add_child(table)
-html.save('page.html')
+with get_html('page.html', style=style) as html:
+    table = Table(
+        id_='table',
+        children=[
+            Caption('Table caption'),
+            Tr(children=[Th('Header 1'), Th('Header 1')]),
+            Tr(children=[Td('Value 1'), Td('Value 2')]),
+            Tr(children=[Td('Value 3'), Td('Value 4')]),
+        ]
+    )
+    
+    html.body.add_child(table)
 ```
 
 
@@ -72,8 +70,6 @@ style = Style(
     """
 )
 
-html = get_html(style=style)
-
 LabelName = Label(text='Name', attrs={'for': 'name'})
 LabelPassword = Label(text='Password', attrs={'for': 'password'})
 
@@ -93,13 +89,12 @@ PasswordTag = Input(
 )
 ButtonTag = Button(text='Send')
 
-html.body.add_child(
-    Form(children=[
-        LabelName, Br(), NameTag, Br(), LabelPassword, Br(), PasswordTag, Br(), ButtonTag
-    ])
-)
-
-html.save('page.html')
+with get_html('page.html', style=style) as html:
+    html.body.add_child(
+        Form(children=[
+            LabelName, Br(), NameTag, Br(), LabelPassword, Br(), PasswordTag, Br(), ButtonTag
+        ])
+    )
 ```
 
 
@@ -113,20 +108,17 @@ from html.formatting import B, I, U
 from html.html import get_html
 from html.tags import Br, Div
 
-html = get_html()
-
-html.body.add_child(
-    Div(
-        style={
-            'font-size': '20px',
-        },
-        children=[
-            B('Bold text'), Br(), I('Cursive text'), Br(), U('Underlined text')
-        ]
+with get_html('page.html') as html:
+    html.body.add_child(
+        Div(
+            style={
+                'font-size': '20px',
+            },
+            children=[
+                B('Bold text'), Br(), I('Cursive text'), Br(), U('Underlined text')
+            ]
+        )
     )
-)
-
-html.save('page.html')
 ```
 
 ![img.png](formatting.png)
