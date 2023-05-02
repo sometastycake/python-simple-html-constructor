@@ -1,4 +1,4 @@
-from html.html import Tag
+from .html import Tag
 
 
 class P(Tag):
