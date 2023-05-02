@@ -42,9 +42,6 @@ with get_html('page.html', style=style) as html:
 ```
 
 
-![img.png](table.png)
-
-
 ### Form
 
 ```python
@@ -98,9 +95,6 @@ with get_html('page.html', style=style) as html:
 ```
 
 
-![img.png](form.png)
-
-
 ### Formatting text
 
 ```python
@@ -120,8 +114,6 @@ with get_html('page.html') as html:
         )
     )
 ```
-
-![img.png](formatting.png)
 
 ## License
 
