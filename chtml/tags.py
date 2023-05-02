@@ -1,4 +1,6 @@
-from .html import Tag
+from typing import Optional
+
+from .html import Tag, _PROPERTIES
 
 
 class Br(Tag):
@@ -15,6 +17,14 @@ class A(Tag):
 
 class Hr(Tag):
     _global_attrs = {'id', 'class', 'style'}
+
+    def __init__(
+        self, styles: str,
+        attrs: _PROPERTIES = None,
+        id_: Optional[str] = None,
+        class_: Optional[str] = None
+    ):
+        super().__init__(text=styles, attrs=attrs, id_=id_, class_=class_)
 
 
 class Div(Tag):
