@@ -1,9 +1,10 @@
 import copy
 from contextlib import contextmanager
 from datetime import date, datetime
+from decimal import Decimal
 from typing import Iterable, List, Mapping, Optional, Union
 
-_TEXT = Optional[Union[str, int, date, datetime]]
+_TEXT = Optional[Union[str, int, date, datetime, Decimal]]
 _STYLE = Optional[Mapping[str, str]]
 _CHILDREN = Optional[List['Tag']]
 _PROPERTIES = Optional[Mapping[str, str]]
