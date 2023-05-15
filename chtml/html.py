@@ -76,10 +76,8 @@ class Tag:
                 raise ValueError(f'Attribute "{attr}" not allowed for tag <{self._tag}>')
         self._attrs.update(attrs)
 
-    def update_text(self, text: str):
-        if not isinstance(text, str):
-            raise TypeError('Invalid type of text')
-        self._text = text
+    def update_text(self, text: _TEXT):
+        self._text = str(text)
 
     def _get_css(self) -> str:
         if not self._style:
@@ -191,6 +189,14 @@ class Meta(Tag):
 
     def __init__(self, attrs: _PROPERTIES = None,):
         super().__init__(attrs=attrs)
+
+
+class Script(Tag):
+
+    _possible_attrs = {'src', 'type'}
+
+    def __init__(self, text: _TEXT,  attrs: _PROPERTIES = None,):
+        super().__init__(text=text, attrs=attrs)
 
 
 class Body(Tag):
