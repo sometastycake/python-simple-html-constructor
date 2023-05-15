@@ -193,9 +193,9 @@ class Meta(Tag):
 
 class Script(Tag):
 
-    _possible_attrs = {'src', 'type'}
+    _possible_attrs = {'src', 'type', 'defer'}
 
-    def __init__(self, text: _TEXT,  attrs: _PROPERTIES = None,):
+    def __init__(self, text: _TEXT = None, attrs: _PROPERTIES = None,):
         super().__init__(text=text, attrs=attrs)
 
 
