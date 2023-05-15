@@ -69,6 +69,18 @@ class Tag:
     def update_style(self, **styles):
         self._style.update(styles)
 
+    def update_attrs(self, **attrs):
+        possible_attrs = self._possible_attrs.union(self._global_attrs)
+        for attr in attrs:
+            if attr not in possible_attrs:
+                raise ValueError(f'Attribute "{attr}" not allowed for tag <{self._tag}>')
+        self._attrs.update(attrs)
+
+    def update_text(self, text: str):
+        if not isinstance(text, str):
+            raise TypeError('Invalid type of text')
+        self._text = text
+
     def _get_css(self) -> str:
         if not self._style:
             return ''
